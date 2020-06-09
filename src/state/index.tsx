@@ -60,10 +60,10 @@ export default function AppStateProvider(props: React.PropsWithChildren<{}>) {
   } else {
     contextValue = {
       ...contextValue,
-      getToken: async (identity, roomName) => {
+      getToken: async (candidateName, roomName) => {
         const headers = new window.Headers();
-        const endpoint = process.env.REACT_APP_TOKEN_ENDPOINT || '/token';
-        const params = new window.URLSearchParams({ identity, roomName });
+        const endpoint = process.env.REACT_APP_TOKEN_ENDPOINT || 'https://qa.shortlist.net/ops/employer/joinvideocall';
+        const params = new window.URLSearchParams({ candidateName, roomName });
 
         return fetch(`${endpoint}?${params}`, { headers }).then(res => res.text());
       },
